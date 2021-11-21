@@ -63,7 +63,17 @@ export default {
   proxy: {
     "/api/": {
       target: "https://gorillalogic.com/wp-json/wp/v2/posts",
-      pathRewrite: { "^/api/": "" }
+      pathRewrite: { "^/api/": "" },
+      headers: {
+        "Connection": "keep-alive"
+      }
+    },
+    "/register/": {
+      target: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + process.env.WEB_API_KEY,
+      pathRewrite: { "^/register/": "" },
+      headers: {
+        "Connection": "keep-alive"
+      }
     }
   }
 }
